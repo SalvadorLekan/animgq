@@ -1,6 +1,6 @@
-query GetAnime($page: Int!, $perPage: Int!, $search: String, $isAdult: Boolean, $status: MediaStatus) {
+query GetAnime($page: Int!, $perPage: Int!, $search: String, $isAdult: Boolean, $status: MediaStatus, $genre: String) {
   Page(page: $page, perPage: $perPage) {
-    media(search: $search, sort: UPDATED_AT_DESC, isAdult: $isAdult, status: $status) {
+    media(search: $search, sort: UPDATED_AT_DESC, isAdult: $isAdult, status: $status, genre: $genre) {
       id
       title {
         romaji

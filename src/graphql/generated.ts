@@ -4667,26 +4667,65 @@ export type YearStats = {
   year?: Maybe<Scalars['Int']>;
 };
 
+export type GenresQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GenresQuery = { __typename?: 'Query', genres?: Array<string | null> | null };
+
 export type GetAnimeQueryVariables = Exact<{
   page: Scalars['Int'];
   perPage: Scalars['Int'];
   search?: InputMaybe<Scalars['String']>;
   isAdult?: InputMaybe<Scalars['Boolean']>;
   status?: InputMaybe<MediaStatus>;
+  genre?: InputMaybe<Scalars['String']>;
 }>;
 
 
 export type GetAnimeQuery = { __typename?: 'Query', Page?: { __typename?: 'Page', media?: Array<{ __typename?: 'Media', id: number, episodes?: number | null, status?: MediaStatus | null, updatedAt?: number | null, type?: MediaType | null, isAdult?: boolean | null, genres?: Array<string | null> | null, format?: MediaFormat | null, source?: MediaSource | null, description?: string | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null, native?: string | null, userPreferred?: string | null } | null, coverImage?: { __typename?: 'MediaCoverImage', medium?: string | null, large?: string | null, color?: string | null } | null } | null> | null } | null };
 
 
+export const GenresDocument = gql`
+    query genres {
+  genres: GenreCollection
+}
+    `;
+
+/**
+ * __useGenresQuery__
+ *
+ * To run a query within a React component, call `useGenresQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGenresQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGenresQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGenresQuery(baseOptions?: Apollo.QueryHookOptions<GenresQuery, GenresQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GenresQuery, GenresQueryVariables>(GenresDocument, options);
+      }
+export function useGenresLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GenresQuery, GenresQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GenresQuery, GenresQueryVariables>(GenresDocument, options);
+        }
+export type GenresQueryHookResult = ReturnType<typeof useGenresQuery>;
+export type GenresLazyQueryHookResult = ReturnType<typeof useGenresLazyQuery>;
+export type GenresQueryResult = Apollo.QueryResult<GenresQuery, GenresQueryVariables>;
 export const GetAnimeDocument = gql`
-    query GetAnime($page: Int!, $perPage: Int!, $search: String, $isAdult: Boolean, $status: MediaStatus) {
+    query GetAnime($page: Int!, $perPage: Int!, $search: String, $isAdult: Boolean, $status: MediaStatus, $genre: String) {
   Page(page: $page, perPage: $perPage) {
     media(
       search: $search
       sort: UPDATED_AT_DESC
       isAdult: $isAdult
       status: $status
+      genre: $genre
     ) {
       id
       title {
@@ -4732,6 +4771,7 @@ export const GetAnimeDocument = gql`
  *      search: // value for 'search'
  *      isAdult: // value for 'isAdult'
  *      status: // value for 'status'
+ *      genre: // value for 'genre'
  *   },
  * });
  */
