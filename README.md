@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Anime Search with Anilist GraphQL API
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
 
 ## Available Scripts
 
