@@ -6,6 +6,11 @@
     "@apollo/client": "^3.6.9",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@graphql-codegen/cli": "^2.8.0",
+    "@graphql-codegen/typed-document-node": "^2.3.1",
+    "@graphql-codegen/typescript": "^2.7.1",
+    "@graphql-codegen/typescript-operations": "^2.5.1",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.1",
     "@mui/material": "^5.8.7",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -23,6 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "generate": "graphql-codegen",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

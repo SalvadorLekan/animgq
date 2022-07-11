@@ -1,0 +1,28 @@
+query GetAnime($page: Int!, $perPage: Int!, $search: String, $isAdult: Boolean, $status: MediaStatus) {
+  Page(page: $page, perPage: $perPage) {
+    media(search: $search, sort: UPDATED_AT_DESC, isAdult: $isAdult, status: $status) {
+      id
+      title {
+        romaji
+        english
+        native
+        userPreferred
+      }
+      episodes
+      status
+      updatedAt
+      type
+      isAdult
+      genres
+      format
+      source
+      genres
+      description
+      coverImage {
+        medium
+        large
+        color
+      }
+    }
+  }
+}

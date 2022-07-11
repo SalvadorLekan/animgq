@@ -8,7 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-  uri: "https://anilist.co/graphiql",
+  uri: "https://graphql.anilist.co",
   cache,
 });
 
